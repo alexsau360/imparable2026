@@ -1,0 +1,1913 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>IMPARABLE 2026</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0A0804">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="IMPARABLE">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta property="og:title" content="IMPARABLE 2026 – La Comunidad">
+<meta property="og:description" content="El guerrero moderno que entrena durante el año para llegar al Encuentro Presencial.">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9A84C;
+    --gold-bright: #F0D070;
+    --gold-dim: #7A6030;
+    --ember: #E85A1A;
+    --ember-dim: #8B3510;
+    --dark: #0A0804;
+    --dark-mid: #12100A;
+    --dark-surface: #1C1810;
+    --dark-card: #221E14;
+    --dark-border: #3A3020;
+    --text-primary: #E8D8A0;
+    --text-secondary: #9A8860;
+    --text-dim: #5A5040;
+    --hero: #C9A84C;
+    --mago: #7A9FD4;
+    --forajido: #8B6B3A;
+    --bufon: #9B6B2A;
+    --level-1: #5A8050;
+    --level-2: #4A70A0;
+    --level-3: #7A50A0;
+    --level-4: #C9A84C;
+    --level-legend: #E85A1A;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background-color: var(--dark);
+    color: var(--text-primary);
+    font-family: 'Crimson Pro', Georgia, serif;
+    min-height: 100vh;
+    background-image: 
+      radial-gradient(ellipse at 20% 50%, rgba(232,90,26,0.04) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 20%, rgba(201,168,76,0.04) 0%, transparent 50%),
+      url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23C9A84C' fill-opacity='0.015'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+
+  /* SCREENS */
+  .screen { display: none; animation: fadeIn 0.5s ease; }
+  .screen.active { display: block; }
+  @keyframes fadeIn { from { opacity:0; transform: translateY(10px); } to { opacity:1; transform: translateY(0); } }
+
+  /* HEADER */
+  .app-header {
+    text-align: center;
+    padding: 40px 20px 20px;
+    position: relative;
+  }
+  .app-header::before {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 50%; transform: translateX(-50%);
+    width: 300px; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold-dim), transparent);
+  }
+  .app-logo {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(28px, 6vw, 48px);
+    font-weight: 900;
+    letter-spacing: 0.15em;
+    background: linear-gradient(135deg, var(--gold-dim), var(--gold-bright), var(--gold-dim));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: none;
+  }
+  .app-subtitle {
+    font-family: 'Crimson Pro', serif;
+    font-style: italic;
+    color: var(--text-secondary);
+    font-size: 16px;
+    margin-top: 6px;
+    letter-spacing: 0.08em;
+  }
+
+  /* NAV */
+  .bottom-nav {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    background: rgba(12,10,6,0.97);
+    border-top: 1px solid var(--dark-border);
+    display: flex;
+    z-index: 100;
+    backdrop-filter: blur(10px);
+  }
+  .nav-btn {
+    flex: 1;
+    padding: 12px 4px 10px;
+    background: none;
+    border: none;
+    color: var(--text-dim);
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    font-family: 'Cinzel', serif;
+    font-size: 9px;
+    letter-spacing: 0.05em;
+    transition: color 0.2s;
+    text-transform: uppercase;
+  }
+  .nav-btn svg { width: 20px; height: 20px; stroke-width: 1.5; }
+  .nav-btn.active { color: var(--gold); }
+  .nav-btn:hover { color: var(--text-primary); }
+
+  /* MAIN CONTENT */
+  .content { padding: 0 16px 100px; max-width: 480px; margin: 0 auto; }
+
+  /* CARDS */
+  .card {
+    background: var(--dark-card);
+    border: 1px solid var(--dark-border);
+    border-radius: 2px;
+    padding: 20px;
+    margin-bottom: 16px;
+    position: relative;
+    overflow: hidden;
+  }
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold-dim), transparent);
+  }
+  .card-title {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+    margin-bottom: 14px;
+  }
+
+  /* ARCHETYPE SELECTION */
+  .archetype-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 16px;
+  }
+  .archetype-card {
+    background: var(--dark-surface);
+    border: 1px solid var(--dark-border);
+    border-radius: 2px;
+    padding: 16px 12px;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.25s;
+    position: relative;
+  }
+  .archetype-card:hover { border-color: var(--gold-dim); transform: translateY(-2px); }
+  .archetype-card.selected {
+    border-color: var(--gold);
+    background: rgba(201,168,76,0.08);
+    box-shadow: 0 0 20px rgba(201,168,76,0.12);
+  }
+  .archetype-icon { font-size: 32px; margin-bottom: 8px; }
+  .archetype-name {
+    font-family: 'Cinzel', serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+  }
+  .archetype-desc {
+    font-size: 11px;
+    color: var(--text-secondary);
+    font-style: italic;
+    line-height: 1.4;
+  }
+  .archetype-card.selected::after {
+    content: '✦';
+    position: absolute;
+    top: 8px; right: 8px;
+    color: var(--gold);
+    font-size: 10px;
+  }
+
+  /* PROGRESS BAR */
+  .progress-section { margin-bottom: 20px; }
+  .progress-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 10px;
+  }
+  .progress-label {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+  }
+  .progress-pts {
+    font-family: 'Cinzel', serif;
+    font-size: 22px;
+    font-weight: 900;
+    color: var(--gold);
+  }
+  .progress-pts span { font-size: 12px; color: var(--text-dim); }
+  .progress-track {
+    width: 100%;
+    height: 8px;
+    background: var(--dark-surface);
+    border-radius: 0;
+    border: 1px solid var(--dark-border);
+    overflow: hidden;
+    position: relative;
+  }
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--ember-dim), var(--gold), var(--gold-bright));
+    transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+  }
+  .progress-fill::after {
+    content: '';
+    position: absolute;
+    right: 0; top: 0; bottom: 0;
+    width: 4px;
+    background: white;
+    opacity: 0.6;
+    filter: blur(1px);
+  }
+  .level-markers {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 6px;
+  }
+  .level-marker {
+    font-size: 9px;
+    color: var(--text-dim);
+    font-family: 'Cinzel', serif;
+    text-align: center;
+  }
+  .level-marker.reached { color: var(--gold-dim); }
+
+  /* WARRIOR STATUS */
+  .warrior-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px;
+  }
+  .warrior-avatar {
+    width: 64px; height: 64px;
+    border-radius: 50%;
+    border: 2px solid var(--gold-dim);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    background: var(--dark-surface);
+    flex-shrink: 0;
+    position: relative;
+  }
+  .warrior-avatar::after {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border-radius: 50%;
+    border: 1px solid rgba(201,168,76,0.2);
+  }
+  .warrior-info { flex: 1; }
+  .warrior-name {
+    font-family: 'Cinzel', serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+  .warrior-archetype {
+    font-size: 12px;
+    color: var(--gold-dim);
+    font-style: italic;
+    margin-top: 2px;
+  }
+  .warrior-level {
+    display: inline-block;
+    margin-top: 6px;
+    padding: 3px 10px;
+    font-family: 'Cinzel', serif;
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    border: 1px solid;
+    border-radius: 1px;
+  }
+
+  /* LEVEL COLORS */
+  .lv-1 { color: var(--level-1); border-color: var(--level-1); }
+  .lv-2 { color: var(--level-2); border-color: var(--level-2); }
+  .lv-3 { color: var(--level-3); border-color: var(--level-3); }
+  .lv-4 { color: var(--level-4); border-color: var(--level-4); }
+  .lv-legend { color: var(--level-legend); border-color: var(--level-legend); animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100% { box-shadow: 0 0 0 0 rgba(232,90,26,0); } 50% { box-shadow: 0 0 8px 2px rgba(232,90,26,0.3); } }
+
+  /* NEXT UNLOCK */
+  .unlock-teaser {
+    background: rgba(201,168,76,0.04);
+    border: 1px solid rgba(201,168,76,0.15);
+    border-radius: 2px;
+    padding: 12px 16px;
+    margin-top: 12px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .unlock-icon { font-size: 22px; opacity: 0.6; }
+  .unlock-text { flex: 1; font-size: 13px; color: var(--text-secondary); }
+  .unlock-pts { font-family: 'Cinzel', serif; font-size: 13px; color: var(--gold-dim); white-space: nowrap; }
+
+  /* HABITS */
+  .habit-day-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+  }
+  .habit-date {
+    font-family: 'Cinzel', serif;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    color: var(--text-secondary);
+  }
+  .habit-streak {
+    font-size: 12px;
+    color: var(--ember);
+    font-style: italic;
+  }
+  .habit-list { display: flex; flex-direction: column; gap: 8px; }
+  .habit-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 12px;
+    background: var(--dark-surface);
+    border: 1px solid var(--dark-border);
+    border-radius: 1px;
+    cursor: pointer;
+    transition: all 0.2s;
+    user-select: none;
+  }
+  .habit-row:hover { border-color: var(--gold-dim); }
+  .habit-row.done {
+    border-color: rgba(201,168,76,0.3);
+    background: rgba(201,168,76,0.05);
+  }
+  .habit-checkbox {
+    width: 20px; height: 20px;
+    border: 1px solid var(--dark-border);
+    border-radius: 1px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    transition: all 0.2s;
+    font-size: 12px;
+  }
+  .habit-row.done .habit-checkbox {
+    border-color: var(--gold-dim);
+    background: rgba(201,168,76,0.15);
+    color: var(--gold);
+  }
+  .habit-label {
+    flex: 1;
+    font-size: 14px;
+    color: var(--text-secondary);
+    transition: color 0.2s;
+  }
+  .habit-row.done .habit-label { color: var(--text-primary); text-decoration-line: none; }
+  .habit-pts-badge {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    color: var(--gold-dim);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .habit-row.done .habit-pts-badge { opacity: 1; }
+  .habit-icon { font-size: 16px; }
+
+  /* CUSTOM HABIT INPUT */
+  .add-habit-row {
+    display: flex;
+    gap: 8px;
+    margin-top: 12px;
+  }
+  .habit-input {
+    flex: 1;
+    background: var(--dark-surface);
+    border: 1px solid var(--dark-border);
+    border-radius: 1px;
+    padding: 10px 14px;
+    color: var(--text-primary);
+    font-family: 'Crimson Pro', serif;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .habit-input:focus { border-color: var(--gold-dim); }
+  .habit-input::placeholder { color: var(--text-dim); font-style: italic; }
+  .btn-add-habit {
+    background: rgba(201,168,76,0.1);
+    border: 1px solid var(--gold-dim);
+    color: var(--gold);
+    padding: 10px 16px;
+    cursor: pointer;
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    transition: all 0.2s;
+    border-radius: 1px;
+  }
+  .btn-add-habit:hover { background: rgba(201,168,76,0.2); }
+
+  /* WEEK GRID */
+  .week-header {
+    display: grid;
+    grid-template-columns: repeat(7,1fr);
+    gap: 4px;
+    margin-bottom: 4px;
+  }
+  .week-day-label {
+    text-align: center;
+    font-family: 'Cinzel', serif;
+    font-size: 9px;
+    color: var(--text-dim);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  .week-dots {
+    display: grid;
+    grid-template-columns: repeat(7,1fr);
+    gap: 4px;
+    margin-bottom: 16px;
+  }
+  .week-dot {
+    height: 20px;
+    background: var(--dark-surface);
+    border: 1px solid var(--dark-border);
+    border-radius: 1px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 9px;
+    color: var(--text-dim);
+    font-family: 'Cinzel', serif;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .week-dot.today { border-color: var(--gold-dim); color: var(--gold); }
+  .week-dot.has-activity { background: rgba(201,168,76,0.15); border-color: var(--gold-dim); }
+  .week-dot.full { background: rgba(201,168,76,0.25); border-color: var(--gold); color: var(--gold); }
+
+  /* GOALS */
+  .goal-status {
+    font-family: 'Cinzel', serif;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    padding: 3px 8px;
+    border: 1px solid;
+    border-radius: 1px;
+    white-space: nowrap;
+  }
+  .goal-status.active { color: var(--level-2); border-color: var(--level-2); }
+  .goal-status.done { color: var(--level-1); border-color: var(--level-1); }
+
+  /* METRIC DISPLAY */
+  .goal-metric-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 12px 0 8px;
+    padding: 12px 14px;
+    background: var(--dark);
+    border: 1px solid var(--dark-border);
+    border-radius: 1px;
+  }
+  .metric-block { text-align: center; flex: 1; }
+  .metric-value {
+    font-family: 'Cinzel', serif;
+    font-size: 20px;
+    font-weight: 900;
+    color: var(--gold);
+    line-height: 1;
+  }
+  .metric-value.current { color: var(--text-primary); }
+  .metric-label {
+    font-size: 10px;
+    color: var(--text-dim);
+    letter-spacing: 0.08em;
+    margin-top: 3px;
+    text-transform: uppercase;
+    font-family: 'Cinzel', serif;
+  }
+  .metric-arrow {
+    font-size: 18px;
+    color: var(--text-dim);
+    flex-shrink: 0;
+  }
+  .metric-unit {
+    font-size: 11px;
+    color: var(--text-dim);
+    font-style: italic;
+    text-align: center;
+    margin-bottom: 8px;
+  }
+
+  /* PROGRESS BAR GOAL */
+  .goal-progress-bar {
+    height: 6px;
+    background: var(--dark);
+    border: 1px solid var(--dark-border);
+    overflow: hidden;
+    margin: 4px 0 6px;
+  }
+  .goal-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--ember-dim), var(--gold));
+    transition: width 0.6s ease;
+    position: relative;
+  }
+  .goal-progress-pct {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    color: var(--text-dim);
+    font-family: 'Cinzel', serif;
+    margin-bottom: 10px;
+  }
+  .goal-progress-pct .pct-val { color: var(--gold-dim); }
+
+  /* PROGRESS LOG ENTRIES */
+  .progress-log-section { margin-top: 12px; }
+  .progress-log-title {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 8px;
+  }
+  .progress-log-empty {
+    font-size: 12px;
+    color: var(--text-dim);
+    font-style: italic;
+    text-align: center;
+    padding: 10px 0;
+  }
+  .progress-entry {
+    display: flex;
+    gap: 10px;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.03);
+    position: relative;
+  }
+  .progress-entry:last-child { border-bottom: none; }
+  .pe-line {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 0;
+  }
+  .pe-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--gold-dim);
+    border: 1px solid var(--gold);
+    flex-shrink: 0;
+    margin-top: 4px;
+  }
+  .pe-connector {
+    flex: 1;
+    width: 1px;
+    background: var(--dark-border);
+    margin-top: 3px;
+  }
+  .pe-body { flex: 1; }
+  .pe-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 8px;
+    margin-bottom: 3px;
+  }
+  .pe-value {
+    font-family: 'Cinzel', serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+  .pe-date {
+    font-size: 10px;
+    color: var(--text-dim);
+    font-style: italic;
+    white-space: nowrap;
+  }
+  .pe-note {
+    font-size: 12px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+  }
+  .pe-delta {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    padding: 2px 6px;
+    border-radius: 1px;
+    flex-shrink: 0;
+  }
+  .pe-delta.pos { color: var(--level-1); border: 1px solid var(--level-1); }
+  .pe-delta.neg { color: var(--ember); border: 1px solid var(--ember); }
+  .pe-delta.neu { color: var(--text-dim); border: 1px solid var(--dark-border); }
+
+  /* ADD ENTRY FORM */
+  .add-entry-panel {
+    margin-top: 10px;
+    padding: 12px;
+    background: var(--dark);
+    border: 1px dashed var(--dark-border);
+    border-radius: 1px;
+  }
+  .add-entry-panel.open { border-color: var(--gold-dim); }
+  .add-entry-toggle {
+    width: 100%;
+    background: none;
+    border: none;
+    color: var(--text-dim);
+    font-size: 12px;
+    cursor: pointer;
+    font-family: 'Crimson Pro', serif;
+    font-style: italic;
+    text-align: center;
+    padding: 4px;
+    transition: color 0.2s;
+  }
+  .add-entry-toggle:hover { color: var(--text-secondary); }
+  .entry-form-fields { margin-top: 10px; }
+  .entry-row {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+  .entry-input {
+    flex: 1;
+    background: var(--dark-surface);
+    border: 1px solid var(--dark-border);
+    border-radius: 1px;
+    padding: 8px 12px;
+    color: var(--text-primary);
+    font-family: 'Crimson Pro', serif;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s;
+    min-width: 0;
+  }
+  .entry-input:focus { border-color: var(--gold-dim); }
+  .entry-input::placeholder { color: var(--text-dim); font-style: italic; }
+  .entry-input.narrow { width: 80px; flex: none; }
+  .btn-save-entry {
+    padding: 8px 16px;
+    background: rgba(201,168,76,0.1);
+    border: 1px solid var(--gold-dim);
+    color: var(--gold);
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    border-radius: 1px;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+  .btn-save-entry:hover { background: rgba(201,168,76,0.2); }
+
+  /* GOAL CARD HEADER */
+  .goal-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 4px;
+  }
+  .goal-card-title {
+    font-size: 15px;
+    color: var(--text-primary);
+    flex: 1;
+    font-weight: 600;
+    line-height: 1.4;
+  }
+  .goal-cat-badge {
+    font-size: 12px;
+    color: var(--text-secondary);
+    font-style: italic;
+    margin-bottom: 10px;
+  }
+  .btn-evidence {
+    width: 100%;
+    margin-top: 10px;
+    padding: 8px;
+    background: none;
+    border: 1px solid var(--level-1);
+    color: var(--level-1);
+    font-size: 11px;
+    cursor: pointer;
+    font-family: 'Cinzel', serif;
+    letter-spacing: 0.1em;
+    transition: all 0.2s;
+    border-radius: 1px;
+  }
+  .btn-evidence:hover { background: rgba(90,128,80,0.15); }
+
+  /* GOAL FORM TWO COLUMN */
+  .form-row-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  /* ADD GOAL FORM */
+  .goal-form { margin-top: 16px; }
+  .form-field { margin-bottom: 12px; }
+  .form-label {
+    display: block;
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 6px;
+  }
+  .form-input, .form-select {
+    width: 100%;
+    background: var(--dark-surface);
+    border: 1px solid var(--dark-border);
+    border-radius: 1px;
+    padding: 10px 14px;
+    color: var(--text-primary);
+    font-family: 'Crimson Pro', serif;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .form-input:focus, .form-select:focus { border-color: var(--gold-dim); }
+  .form-select option { background: var(--dark-card); }
+  .btn-primary {
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(135deg, rgba(201,168,76,0.15), rgba(201,168,76,0.08));
+    border: 1px solid var(--gold-dim);
+    color: var(--gold);
+    font-family: 'Cinzel', serif;
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.25s;
+    border-radius: 1px;
+  }
+  .btn-primary:hover {
+    background: linear-gradient(135deg, rgba(201,168,76,0.25), rgba(201,168,76,0.12));
+    box-shadow: 0 0 20px rgba(201,168,76,0.1);
+  }
+
+  /* REWARDS */
+  .reward-tier {
+    padding: 18px;
+    margin-bottom: 12px;
+    border: 1px solid var(--dark-border);
+    border-radius: 2px;
+    position: relative;
+    overflow: hidden;
+  }
+  .reward-tier.locked { opacity: 0.5; }
+  .reward-tier.unlocked {
+    border-color: rgba(201,168,76,0.3);
+    background: rgba(201,168,76,0.04);
+  }
+  .reward-tier.unlocked::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold-dim), transparent);
+  }
+  .reward-tier-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 10px;
+  }
+  .reward-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .reward-tier-title {
+    font-family: 'Cinzel', serif;
+    font-size: 13px;
+    font-weight: 700;
+    flex: 1;
+  }
+  .reward-pts-req {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    color: var(--text-dim);
+  }
+  .reward-items { padding-left: 22px; }
+  .reward-item {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-bottom: 4px;
+    line-height: 1.5;
+  }
+  .reward-item::before { content: '· '; color: var(--gold-dim); }
+  .lock-icon { font-size: 14px; opacity: 0.4; }
+
+  /* POINTS LOG */
+  .points-log { margin-top: 20px; }
+  .log-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.03);
+  }
+  .log-icon { font-size: 16px; width: 24px; text-align: center; flex-shrink: 0; }
+  .log-desc { flex: 1; font-size: 13px; color: var(--text-secondary); }
+  .log-pts {
+    font-family: 'Cinzel', serif;
+    font-size: 12px;
+    color: var(--gold-dim);
+  }
+  .log-date { font-size: 10px; color: var(--text-dim); margin-top: 2px; }
+
+  /* SECTION DIVIDER */
+  .section-divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 20px 0 16px;
+  }
+  .section-divider-line { flex: 1; height: 1px; background: var(--dark-border); }
+  .section-divider-text {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+  }
+
+  /* SETUP SCREEN */
+  .setup-hero {
+    text-align: center;
+    padding: 30px 20px;
+  }
+  .setup-emblem { font-size: 60px; margin-bottom: 16px; }
+  .setup-title {
+    font-family: 'Cinzel', serif;
+    font-size: 22px;
+    font-weight: 900;
+    letter-spacing: 0.1em;
+    background: linear-gradient(135deg, var(--gold-dim), var(--gold-bright));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 8px;
+  }
+  .setup-tagline {
+    font-size: 14px;
+    color: var(--text-secondary);
+    font-style: italic;
+    line-height: 1.6;
+  }
+  .step-indicator {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin: 20px 0;
+  }
+  .step-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--dark-border);
+    transition: all 0.3s;
+  }
+  .step-dot.active { background: var(--gold); width: 20px; border-radius: 3px; }
+  .step-dot.done { background: var(--gold-dim); }
+
+  /* TOAST */
+  .toast {
+    position: fixed;
+    top: 20px; left: 50%; transform: translateX(-50%) translateY(-80px);
+    background: var(--dark-card);
+    border: 1px solid var(--gold-dim);
+    border-radius: 2px;
+    padding: 12px 20px;
+    font-family: 'Cinzel', serif;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    color: var(--gold);
+    z-index: 1000;
+    transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
+    white-space: nowrap;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+  }
+  .toast.show { transform: translateX(-50%) translateY(0); }
+
+  /* TOGGLE */
+  .session-toggle {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  .session-btn {
+    padding: 10px;
+    background: var(--dark-surface);
+    border: 1px solid var(--dark-border);
+    color: var(--text-dim);
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    cursor: pointer;
+    transition: all 0.2s;
+    border-radius: 1px;
+    text-align: center;
+  }
+  .session-btn.attended {
+    background: rgba(80,128,80,0.15);
+    border-color: var(--level-1);
+    color: var(--level-1);
+  }
+  .session-btn:hover { border-color: var(--gold-dim); }
+
+  input[type="range"] {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 4px;
+    background: var(--dark-border);
+    border-radius: 0;
+    outline: none;
+    margin: 8px 0;
+  }
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 16px; height: 16px;
+    background: var(--gold);
+    border-radius: 0;
+    cursor: pointer;
+  }
+
+  .range-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 10px;
+    color: var(--text-dim);
+    margin-bottom: 8px;
+    font-family: 'Cinzel', serif;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 360px) {
+    .archetype-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+    .archetype-card { padding: 12px 8px; }
+  }
+</style>
+</head>
+<body>
+
+<div id="toast" class="toast"></div>
+
+<!-- SETUP SCREEN -->
+<div id="screen-setup" class="screen active">
+  <div class="content" style="padding-top:20px;">
+    <div class="setup-hero">
+      <div class="setup-emblem">⚔️</div>
+      <div class="setup-title">IMPARABLE 2026</div>
+      <div class="setup-tagline">El guerrero moderno que entrena durante el año<br>para llegar al Encuentro Presencial.</div>
+    </div>
+    <div class="step-indicator">
+      <div class="step-dot active" id="step-1"></div>
+      <div class="step-dot" id="step-2"></div>
+      <div class="step-dot" id="step-3"></div>
+    </div>
+
+    <!-- Step 1: Name -->
+    <div id="setup-step-1">
+      <div class="card">
+        <div class="card-title">Tu nombre de guerra</div>
+        <div class="form-field">
+          <label class="form-label">¿Cómo te llamarás en esta batalla?</label>
+          <input class="form-input" id="input-name" type="text" placeholder="Ej. El Capitán Torres…" maxlength="30">
+        </div>
+      </div>
+      <button class="btn-primary" onclick="goToStep2()">Continuar →</button>
+    </div>
+
+    <!-- Step 2: Archetype -->
+    <div id="setup-step-2" style="display:none;">
+      <div class="card">
+        <div class="card-title">Elige tu arquetipo</div>
+        <p style="font-size:13px; color:var(--text-secondary); font-style:italic; margin-bottom:4px;">¿Cuál refleja mejor cómo operas en el mundo?</p>
+        <div class="archetype-grid">
+          <div class="archetype-card" onclick="selectArchetype('heroe','⚔️','El Héroe','Estratega. Actúa con propósito y claridad.')">
+            <div class="archetype-icon">⚔️</div>
+            <div class="archetype-name">El Héroe</div>
+            <div class="archetype-desc">Estratega. Actúa con propósito y claridad.</div>
+          </div>
+          <div class="archetype-card" onclick="selectArchetype('mago','🔮','El Mago','Visionario. Transforma todo lo que toca.')">
+            <div class="archetype-icon">🔮</div>
+            <div class="archetype-name">El Mago</div>
+            <div class="archetype-desc">Visionario. Transforma todo lo que toca.</div>
+          </div>
+          <div class="archetype-card" onclick="selectArchetype('forajido','🏹','El Forajido','Disruptor. Rompe reglas que no sirven.')">
+            <div class="archetype-icon">🏹</div>
+            <div class="archetype-name">El Forajido</div>
+            <div class="archetype-desc">Disruptor. Rompe reglas que no sirven.</div>
+          </div>
+          <div class="archetype-card" onclick="selectArchetype('bufon','🎭','El Bufón','Conector. Une mundos con audacia.')">
+            <div class="archetype-icon">🎭</div>
+            <div class="archetype-name">El Bufón</div>
+            <div class="archetype-desc">Conector. Une mundos con audacia.</div>
+          </div>
+        </div>
+      </div>
+      <button class="btn-primary" onclick="goToStep3()">Continuar →</button>
+    </div>
+
+    <!-- Step 3: First goal -->
+    <div id="setup-step-3" style="display:none;">
+      <div class="card">
+        <div class="card-title">Declara tu primer objetivo</div>
+        <p style="font-size:13px; color:var(--text-secondary); font-style:italic; margin-bottom:12px;">Un objetivo claro y medible. Vale 5 puntos solo por declararlo.</p>
+        <div class="form-field">
+          <label class="form-label">Mi objetivo para 2026</label>
+          <input class="form-input" id="input-goal" type="text" placeholder="Ej. Correr 5 km antes de junio…" maxlength="80">
+        </div>
+        <div class="form-field">
+          <label class="form-label">Categoría</label>
+          <select class="form-select" id="input-goal-cat">
+            <option value="salud">🏋️ Salud & Cuerpo</option>
+            <option value="negocio">💼 Negocio & Ventas</option>
+            <option value="mente">🧠 Mente & Aprendizaje</option>
+            <option value="relaciones">🤝 Relaciones</option>
+            <option value="finanzas">💰 Finanzas</option>
+          </select>
+        </div>
+      </div>
+      <button class="btn-primary" onclick="finishSetup()">⚔️ Comenzar mi camino</button>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN APP -->
+<div id="screen-app" style="display:none;">
+  <!-- HOME -->
+  <div id="screen-home" class="screen active">
+    <div class="app-header">
+      <div class="app-logo">IMPARABLE</div>
+      <div class="app-subtitle">La Comunidad · 2026</div>
+    </div>
+    <div class="content">
+      <!-- Warrior card -->
+      <div class="card warrior-card" style="padding:16px 20px;">
+        <div class="warrior-avatar" id="home-avatar">⚔️</div>
+        <div class="warrior-info">
+          <div class="warrior-name" id="home-name">Guerrero</div>
+          <div class="warrior-archetype" id="home-archetype">–</div>
+          <div class="warrior-level lv-1" id="home-level">Recluta</div>
+        </div>
+      </div>
+
+      <!-- Progress -->
+      <div class="card">
+        <div class="progress-section">
+          <div class="progress-header">
+            <span class="progress-label">Puntos de Honor</span>
+            <div class="progress-pts" id="home-pts">0 <span>pts</span></div>
+          </div>
+          <div class="progress-track">
+            <div class="progress-fill" id="home-bar" style="width:0%"></div>
+          </div>
+          <div class="level-markers">
+            <div class="level-marker" id="marker-25">25<br>Equipo</div>
+            <div class="level-marker" id="marker-50">50<br>Héroe</div>
+            <div class="level-marker" id="marker-75">75<br>Alianza</div>
+            <div class="level-marker" id="marker-100">100<br>Umbral</div>
+          </div>
+        </div>
+        <div class="unlock-teaser" id="next-unlock-row">
+          <div class="unlock-icon">🔒</div>
+          <div class="unlock-text" id="next-unlock-text">–</div>
+          <div class="unlock-pts" id="next-unlock-pts">–</div>
+        </div>
+      </div>
+
+      <!-- Today's habits summary -->
+      <div class="card">
+        <div class="card-title">Hoy · Hábitos</div>
+        <div id="home-habits-summary" style="font-size:14px; color:var(--text-secondary); font-style:italic;">–</div>
+        <div class="section-divider"><div class="section-divider-line"></div><div class="section-divider-text">Semana</div><div class="section-divider-line"></div></div>
+        <div class="week-header" id="week-header"></div>
+        <div class="week-dots" id="week-dots"></div>
+      </div>
+
+      <!-- Quick points -->
+      <div class="card">
+        <div class="card-title">Sumar puntos · Sesiones</div>
+        <p style="font-size:13px; color:var(--text-secondary); margin-bottom:12px; font-style:italic;">Marca tu asistencia a cada sesión (+5 pts c/u)</p>
+        <div class="session-toggle" id="sessions-grid"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HABITS -->
+  <div id="screen-habits" class="screen">
+    <div class="app-header">
+      <div class="app-logo" style="font-size:24px;">Hábitos</div>
+      <div class="app-subtitle" id="habits-date-header">–</div>
+    </div>
+    <div class="content">
+      <div class="card">
+        <div class="habit-day-header">
+          <div class="habit-date" id="habits-full-date">–</div>
+          <div class="habit-streak" id="habits-streak">–</div>
+        </div>
+        <div class="habit-list" id="habit-list"></div>
+        <div class="add-habit-row">
+          <input class="habit-input" id="new-habit-input" placeholder="Agregar hábito personal…" maxlength="40">
+          <button class="btn-add-habit" onclick="addCustomHabit()">+ Agregar</button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">Por qué importa</div>
+        <p style="font-size:14px; color:var(--text-secondary); line-height:1.7; font-style:italic;">"El guerrero no espera motivación. Actúa porque es quien dice ser. El hábito es la armadura del imparable."</p>
+        <div style="text-align:right; margin-top:8px; font-size:11px; color:var(--text-dim);">– IMPARABLE 2026</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- GOALS -->
+  <div id="screen-goals" class="screen">
+    <div class="app-header">
+      <div class="app-logo" style="font-size:24px;">Objetivos</div>
+      <div class="app-subtitle">Declara · Mide · Conquista</div>
+    </div>
+    <div class="content">
+      <div id="goals-list"></div>
+
+      <!-- NEW GOAL FORM -->
+      <div class="card">
+        <div class="card-title">Nuevo objetivo</div>
+        <div class="form-field">
+          <label class="form-label">Objetivo claro y medible</label>
+          <input class="form-input" id="new-goal-text" placeholder="Ej. Correr 10 km sin parar…">
+        </div>
+        <div class="form-field">
+          <label class="form-label">Categoría</label>
+          <select class="form-select" id="new-goal-cat">
+            <option value="salud">🏋️ Salud & Cuerpo</option>
+            <option value="negocio">💼 Negocio & Ventas</option>
+            <option value="mente">🧠 Mente & Aprendizaje</option>
+            <option value="relaciones">🤝 Relaciones</option>
+            <option value="finanzas">💰 Finanzas</option>
+          </select>
+        </div>
+
+        <!-- METRIC SETUP -->
+        <div class="form-field">
+          <label class="form-label">¿Cómo lo vas a medir?</label>
+          <select class="form-select" id="new-goal-metric-type" onchange="toggleMetricFields()">
+            <option value="numeric">Número (km, kg, ventas, $, horas…)</option>
+            <option value="percent">Porcentaje completado</option>
+            <option value="count">Conteo de veces / repeticiones</option>
+            <option value="binary">Sí / No (logrado o no)</option>
+          </select>
+        </div>
+        <div id="metric-fields-numeric">
+          <div class="form-row-2">
+            <div class="form-field">
+              <label class="form-label">Punto de partida</label>
+              <input class="form-input" id="new-goal-start" type="number" placeholder="0">
+            </div>
+            <div class="form-field">
+              <label class="form-label">Meta a alcanzar</label>
+              <input class="form-input" id="new-goal-target" type="number" placeholder="10">
+            </div>
+          </div>
+          <div class="form-field">
+            <label class="form-label">Unidad (km, kg, $, ventas…)</label>
+            <input class="form-input" id="new-goal-unit" placeholder="Ej. km" maxlength="15">
+          </div>
+        </div>
+
+        <div class="form-field">
+          <label class="form-label">Fecha límite (opcional)</label>
+          <input class="form-input" id="new-goal-deadline" type="date">
+        </div>
+        <button class="btn-primary" onclick="addGoal()">✦ Declarar objetivo (+5 pts)</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- REWARDS -->
+  <div id="screen-rewards" class="screen">
+    <div class="app-header">
+      <div class="app-logo" style="font-size:24px;">Desbloqueos</div>
+      <div class="app-subtitle">Tu camino al Umbral</div>
+    </div>
+    <div class="content">
+      <div id="rewards-list"></div>
+      <div class="section-divider"><div class="section-divider-line"></div><div class="section-divider-text">Historial de puntos</div><div class="section-divider-line"></div></div>
+      <div id="points-log"></div>
+    </div>
+  </div>
+
+  <!-- NAV -->
+  <nav class="bottom-nav">
+    <button class="nav-btn active" onclick="switchTab('home')" id="nav-home">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      Inicio
+    </button>
+    <button class="nav-btn" onclick="switchTab('habits')" id="nav-habits">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      Hábitos
+    </button>
+    <button class="nav-btn" onclick="switchTab('goals')" id="nav-goals">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+      Objetivos
+    </button>
+    <button class="nav-btn" onclick="switchTab('rewards')" id="nav-rewards">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+      Recompensas
+    </button>
+  </nav>
+</div>
+
+<script>
+// ── STATE ──────────────────────────────────────────────────────
+let state = JSON.parse(localStorage.getItem('imparable2026') || 'null') || {
+  setup: false,
+  name: '',
+  archetype: null,
+  archetypeIcon: '⚔️',
+  archetypeName: '',
+  points: 0,
+  log: [],
+  habits: [
+    { id: 'sleep', label: 'Dormir 7–8 horas', icon: '🌙', custom: false },
+    { id: 'eat', label: 'Alimentarte sano', icon: '🥗', custom: false },
+    { id: 'meditate', label: 'Meditar 10 minutos', icon: '🧘', custom: false },
+    { id: 'water', label: 'Tomar agua suficiente', icon: '💧', custom: false },
+    { id: 'read', label: 'Leer 20 minutos', icon: '📖', custom: false },
+  ],
+  habitLog: {}, // { 'YYYY-MM-DD': { habitId: true } }
+  goals: [],
+  sessions: {} // { 'sess-1.1': true }
+};
+
+let tempArchetype = null;
+
+function save() {
+  localStorage.setItem('imparable2026', JSON.stringify(state));
+}
+
+function today() {
+  return new Date().toISOString().split('T')[0];
+}
+
+function formatDate(dateStr) {
+  const [y,m,d] = dateStr.split('-');
+  const months = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
+  return `${parseInt(d)} ${months[parseInt(m)-1]} ${y}`;
+}
+
+// ── TOAST ──────────────────────────────────────────────────────
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2800);
+}
+
+// ── POINTS ──────────────────────────────────────────────────────
+function addPoints(pts, reason, icon = '⚡') {
+  state.points += pts;
+  state.log.unshift({ pts, reason, icon, date: today() });
+  save();
+  updateAll();
+  showToast(`+${pts} pts · ${reason}`);
+}
+
+function getLevelInfo(pts) {
+  if (pts >= 1000) return { label: 'LEYENDA', cls: 'lv-legend', color: '#E85A1A' };
+  if (pts >= 100) return { label: 'El Umbral', cls: 'lv-4', color: '#C9A84C' };
+  if (pts >= 75) return { label: 'Alianza', cls: 'lv-3', color: '#7A50A0' };
+  if (pts >= 50) return { label: 'Desafío del Héroe', cls: 'lv-2', color: '#4A70A0' };
+  if (pts >= 25) return { label: 'Equipo del Guerrero', cls: 'lv-1', color: '#5A8050' };
+  return { label: 'Recluta', cls: 'lv-1', color: '#5A8050' };
+}
+
+function getNextUnlock(pts) {
+  if (pts < 25) return { pts: 25, text: 'Tracker · Tablero · Checklist semanal', pts_away: 25 - pts };
+  if (pts < 50) return { pts: 50, text: 'Cartas Imparable (52 preguntas)', pts_away: 50 - pts };
+  if (pts < 75) return { pts: 75, text: '20% descuento en talleres', pts_away: 75 - pts };
+  if (pts < 100) return { pts: 100, text: '🔥 Acceso al Encuentro Presencial', pts_away: 100 - pts };
+  if (pts < 1000) return { pts: 1000, text: '⚡ NIVEL LEYENDA · Acceso VIP', pts_away: 1000 - pts };
+  return null;
+}
+
+// ── SETUP ──────────────────────────────────────────────────────
+function goToStep2() {
+  const name = document.getElementById('input-name').value.trim();
+  if (!name) { showToast('Escribe tu nombre de guerra'); return; }
+  state.name = name;
+  document.getElementById('setup-step-1').style.display = 'none';
+  document.getElementById('setup-step-2').style.display = 'block';
+  document.getElementById('step-1').classList.remove('active');
+  document.getElementById('step-1').classList.add('done');
+  document.getElementById('step-2').classList.add('active');
+}
+
+function selectArchetype(id, icon, name, desc) {
+  document.querySelectorAll('.archetype-card').forEach(c => c.classList.remove('selected'));
+  event.currentTarget.classList.add('selected');
+  tempArchetype = { id, icon, name, desc };
+}
+
+function goToStep3() {
+  if (!tempArchetype) { showToast('Elige tu arquetipo'); return; }
+  state.archetype = tempArchetype.id;
+  state.archetypeIcon = tempArchetype.icon;
+  state.archetypeName = tempArchetype.name;
+  document.getElementById('setup-step-2').style.display = 'none';
+  document.getElementById('setup-step-3').style.display = 'block';
+  document.getElementById('step-2').classList.remove('active');
+  document.getElementById('step-2').classList.add('done');
+  document.getElementById('step-3').classList.add('active');
+}
+
+function finishSetup() {
+  const goalText = document.getElementById('input-goal').value.trim();
+  if (!goalText) { showToast('Declara tu primer objetivo'); return; }
+  const cat = document.getElementById('input-goal-cat').value;
+  state.goals.push({ id: Date.now(), text: goalText, cat, progress: 0, done: false, date: today() });
+  state.points += 5;
+  state.log.push({ pts: 5, reason: 'Objetivo declarado', icon: '🎯', date: today() });
+  state.setup = true;
+  save();
+  document.getElementById('screen-setup').style.display = 'none';
+  document.getElementById('screen-app').style.display = 'block';
+  initApp();
+}
+
+// ── SESSIONS ──────────────────────────────────────────────────
+const sessionDefs = [
+  { id: 's1-1', label: 'Etapa 1 · Sesión 1\nEl Objetivo' },
+  { id: 's1-2', label: 'Etapa 1 · Sesión 2\nArquetipo' },
+  { id: 's2-1', label: 'Etapa 2 · Sesión 1\nTracker' },
+  { id: 's2-2', label: 'Etapa 2 · Sesión 2\nEnemigo' },
+  { id: 's3-1', label: 'Etapa 3 · Sesión 1\nPropósito' },
+  { id: 's3-2', label: 'Etapa 3 · Sesión 2\nCelebrar' },
+  { id: 's4-1', label: 'Etapa 4 · Sesión 1\nFeedback' },
+  { id: 's4-2', label: 'Etapa 4 · Sesión 2\nCierre' },
+];
+
+function renderSessions() {
+  const grid = document.getElementById('sessions-grid');
+  grid.innerHTML = '';
+  sessionDefs.forEach(s => {
+    const attended = !!state.sessions[s.id];
+    const btn = document.createElement('button');
+    btn.className = 'session-btn' + (attended ? ' attended' : '');
+    btn.textContent = s.label;
+    btn.style.whiteSpace = 'pre';
+    btn.style.lineHeight = '1.4';
+    if (!attended) {
+      btn.onclick = () => {
+        state.sessions[s.id] = true;
+        const total = Object.keys(state.sessions).length;
+        let bonus = '';
+        if (total === 8) {
+          addPoints(5, 'Bonus: 8 sesiones completas', '🏆');
+          bonus = ' + Bonus coherencia';
+        }
+        addPoints(5, `Asistencia: ${s.label.split('\n')[0]}${bonus}`, '🎥');
+        renderSessions();
+      };
+    }
+    grid.appendChild(btn);
+  });
+}
+
+// ── HABITS ──────────────────────────────────────────────────────
+function getTodayHabits() {
+  const t = today();
+  if (!state.habitLog[t]) state.habitLog[t] = {};
+  return state.habitLog[t];
+}
+
+function renderHabits() {
+  const todayLog = getTodayHabits();
+  const list = document.getElementById('habit-list');
+  list.innerHTML = '';
+  state.habits.forEach(h => {
+    const done = !!todayLog[h.id];
+    const row = document.createElement('div');
+    row.className = 'habit-row' + (done ? ' done' : '');
+    row.innerHTML = `
+      <div class="habit-checkbox">${done ? '✦' : ''}</div>
+      <div class="habit-icon">${h.icon || '◆'}</div>
+      <div class="habit-label">${h.label}</div>
+      <div class="habit-pts-badge">+0.5</div>
+    `;
+    row.onclick = () => toggleHabit(h.id);
+    list.appendChild(row);
+  });
+  // Date
+  const now = new Date();
+  const days = ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
+  const months = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+  document.getElementById('habits-full-date').textContent = `${days[now.getDay()]}, ${now.getDate()} de ${months[now.getMonth()]}`;
+  document.getElementById('habits-date-header').textContent = `${days[now.getDay()]}`;
+  // Streak
+  const doneCount = Object.values(todayLog).filter(Boolean).length;
+  document.getElementById('habits-streak').textContent = doneCount > 0 ? `${doneCount}/${state.habits.length} completados hoy 🔥` : 'Ninguno aún · ¡Empieza!';
+  updateHomeSummary();
+}
+
+function toggleHabit(id) {
+  const t = today();
+  if (!state.habitLog[t]) state.habitLog[t] = {};
+  const was = !!state.habitLog[t][id];
+  state.habitLog[t][id] = !was;
+  if (!was) {
+    // award fractional tracked as integer rounded
+    addPoints(1, 'Hábito completado', '✅');
+  } else {
+    state.points = Math.max(0, state.points - 1);
+    state.log.shift();
+    save();
+    updateAll();
+  }
+  renderHabits();
+}
+
+function addCustomHabit() {
+  const input = document.getElementById('new-habit-input');
+  const text = input.value.trim();
+  if (!text) return;
+  const id = 'custom_' + Date.now();
+  state.habits.push({ id, label: text, icon: '◆', custom: true });
+  input.value = '';
+  save();
+  renderHabits();
+}
+
+function updateHomeSummary() {
+  const todayLog = getTodayHabits();
+  const done = Object.values(todayLog).filter(Boolean).length;
+  const total = state.habits.length;
+  const el = document.getElementById('home-habits-summary');
+  if (!el) return;
+  el.textContent = done === 0 ? 'Ningún hábito completado hoy.' : done === total ? `¡${total}/${total} hábitos completados! 🔥` : `${done}/${total} hábitos completados hoy.`;
+}
+
+// ── WEEK DOTS ──────────────────────────────────────────────────
+function renderWeek() {
+  const wh = document.getElementById('week-header');
+  const wd = document.getElementById('week-dots');
+  if (!wh || !wd) return;
+  const labels = ['L','M','M','J','V','S','D'];
+  wh.innerHTML = labels.map(l => `<div class="week-day-label">${l}</div>`).join('');
+  const now = new Date();
+  const dayOfWeek = now.getDay() === 0 ? 6 : now.getDay() - 1; // Monday = 0
+  wd.innerHTML = '';
+  for (let i = 0; i < 7; i++) {
+    const d = new Date(now);
+    d.setDate(d.getDate() - dayOfWeek + i);
+    const dateStr = d.toISOString().split('T')[0];
+    const isToday = dateStr === today();
+    const log = state.habitLog[dateStr] || {};
+    const count = Object.values(log).filter(Boolean).length;
+    const total = state.habits.length;
+    let cls = 'week-dot';
+    if (isToday) cls += ' today';
+    else if (count > 0 && count < total) cls += ' has-activity';
+    else if (count >= total && total > 0) cls += ' full';
+    wd.innerHTML += `<div class="${cls}">${count > 0 ? count : d.getDate()}</div>`;
+  }
+}
+
+// ── GOALS ──────────────────────────────────────────────────────
+const catEmojis = { salud:'🏋️', negocio:'💼', mente:'🧠', relaciones:'🤝', finanzas:'💰' };
+
+function toggleMetricFields() {
+  const type = document.getElementById('new-goal-metric-type').value;
+  document.getElementById('metric-fields-numeric').style.display =
+    (type === 'numeric' || type === 'count') ? 'block' : 'none';
+}
+
+function calcProgress(g) {
+  if (g.done) return 100;
+  if (g.metricType === 'binary') return g.done ? 100 : 0;
+  if (g.metricType === 'percent') {
+    const last = g.entries && g.entries.length ? g.entries[g.entries.length - 1] : null;
+    return last ? Math.min(100, parseFloat(last.value)) : 0;
+  }
+  // numeric / count
+  const start = parseFloat(g.metricStart) || 0;
+  const target = parseFloat(g.metricTarget) || 100;
+  const current = g.entries && g.entries.length
+    ? parseFloat(g.entries[g.entries.length - 1].value)
+    : start;
+  if (target === start) return current >= target ? 100 : 0;
+  return Math.min(100, Math.max(0, Math.round(((current - start) / (target - start)) * 100)));
+}
+
+function getCurrentValue(g) {
+  if (!g.entries || !g.entries.length) return g.metricStart || 0;
+  return g.entries[g.entries.length - 1].value;
+}
+
+function renderGoals() {
+  const list = document.getElementById('goals-list');
+  if (!list) return;
+  list.innerHTML = '';
+  if (state.goals.length === 0) {
+    list.innerHTML = '<div class="card" style="text-align:center; color:var(--text-dim); font-style:italic; font-size:14px; padding:30px 20px;">Aún no has declarado ningún objetivo.<br><br>El primer paso es nombrarlo.</div>';
+    return;
+  }
+  state.goals.forEach((g, idx) => {
+    const pct = calcProgress(g);
+    const current = getCurrentValue(g);
+    const div = document.createElement('div');
+    div.className = 'card';
+
+    // Deadline
+    let deadlineHtml = '';
+    if (g.deadline) {
+      const dl = new Date(g.deadline + 'T12:00:00');
+      const diff = Math.ceil((dl - new Date()) / 86400000);
+      const dlColor = diff < 14 ? 'var(--ember)' : 'var(--text-dim)';
+      deadlineHtml = `<span style="color:${dlColor}; font-size:11px; font-style:italic;">${diff > 0 ? diff + ' días restantes' : '¡Fecha límite!'}</span>`;
+    }
+
+    // Metric display
+    let metricHtml = '';
+    if (g.metricType === 'numeric' || g.metricType === 'count') {
+      const unit = g.metricUnit || '';
+      metricHtml = `
+        <div class="goal-metric-row">
+          <div class="metric-block">
+            <div class="metric-value">${g.metricStart}${unit ? ' <span style="font-size:12px;color:var(--text-dim)">' + unit + '</span>' : ''}</div>
+            <div class="metric-label">Inicio</div>
+          </div>
+          <div class="metric-arrow">→</div>
+          <div class="metric-block">
+            <div class="metric-value current">${current}${unit ? ' <span style="font-size:12px;color:var(--text-dim)">' + unit + '</span>' : ''}</div>
+            <div class="metric-label">Actual</div>
+          </div>
+          <div class="metric-arrow">→</div>
+          <div class="metric-block">
+            <div class="metric-value" style="color:var(--gold)">${g.metricTarget}${unit ? ' <span style="font-size:12px;color:var(--text-dim)">' + unit + '</span>' : ''}</div>
+            <div class="metric-label">Meta</div>
+          </div>
+        </div>`;
+    } else if (g.metricType === 'percent') {
+      metricHtml = `<div class="goal-metric-row">
+        <div class="metric-block" style="flex:2">
+          <div class="metric-value">${current}%</div>
+          <div class="metric-label">Avance registrado</div>
+        </div>
+        <div class="metric-block" style="flex:1">
+          <div class="metric-value" style="color:var(--gold)">100%</div>
+          <div class="metric-label">Meta</div>
+        </div>
+      </div>`;
+    }
+
+    // Progress entries log
+    const entries = g.entries || [];
+    let entriesHtml = '';
+    if (entries.length > 0) {
+      entriesHtml = [...entries].reverse().slice(0, 5).map((e, i, arr) => {
+        const prev = arr[i + 1];
+        let deltaHtml = '';
+        if (prev && (g.metricType === 'numeric' || g.metricType === 'count' || g.metricType === 'percent')) {
+          const delta = parseFloat(e.value) - parseFloat(prev.value);
+          const cls = delta > 0 ? 'pos' : delta < 0 ? 'neg' : 'neu';
+          const sign = delta > 0 ? '+' : '';
+          deltaHtml = `<span class="pe-delta ${cls}">${sign}${delta}${g.metricUnit || ''}</span>`;
+        }
+        return `<div class="progress-entry">
+          <div class="pe-line">
+            <div class="pe-dot"></div>
+            ${i < arr.length - 1 ? '<div class="pe-connector"></div>' : ''}
+          </div>
+          <div class="pe-body">
+            <div class="pe-header">
+              <span class="pe-value">${e.value}${g.metricUnit ? ' ' + g.metricUnit : ''}</span>
+              ${deltaHtml}
+              <span class="pe-date">${formatDate(e.date)}</span>
+            </div>
+            ${e.note ? `<div class="pe-note">${e.note}</div>` : ''}
+          </div>
+        </div>`;
+      }).join('');
+    } else {
+      entriesHtml = '<div class="progress-log-empty">Sin registros aún. Añade tu primer avance.</div>';
+    }
+
+    div.innerHTML = `
+      <div class="goal-card-header">
+        <div class="goal-card-title">${catEmojis[g.cat] || '🎯'} ${g.text}</div>
+        <div class="goal-status ${g.done ? 'done' : 'active'}">${g.done ? '✦ Logrado' : 'En curso'}</div>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
+        <div class="goal-cat-badge">${g.date ? formatDate(g.date) : ''}</div>
+        ${deadlineHtml}
+      </div>
+      ${metricHtml}
+      <div class="goal-progress-pct">
+        <span>Progreso general</span>
+        <span class="pct-val">${pct}%</span>
+      </div>
+      <div class="goal-progress-bar">
+        <div class="goal-progress-fill" style="width:${pct}%"></div>
+      </div>
+
+      <div class="progress-log-section">
+        <div class="progress-log-title">Bitácora de avances</div>
+        ${entriesHtml}
+      </div>
+
+      ${!g.done ? `
+      <div class="add-entry-panel" id="panel-${idx}">
+        <button class="add-entry-toggle" onclick="toggleEntryPanel(${idx})">+ Registrar nuevo avance</button>
+        <div class="entry-form-fields" id="entry-fields-${idx}" style="display:none;">
+          <div class="entry-row">
+            <input class="entry-input narrow" id="entry-val-${idx}" type="number" placeholder="${g.metricType === 'binary' ? '1=Sí' : g.metricUnit || 'valor'}">
+            <input class="entry-input" id="entry-note-${idx}" placeholder="Nota breve (opcional)" maxlength="100">
+            <button class="btn-save-entry" onclick="addProgressEntry(${idx})">Guardar</button>
+          </div>
+        </div>
+      </div>
+      <button class="btn-evidence" onclick="markGoalDone(${idx})">🏆 Marcar como logrado (+20 pts)</button>
+      ` : '<div style="text-align:center;margin-top:12px;font-size:13px;color:var(--level-1);font-family:Cinzel,serif;letter-spacing:0.1em;">✦ OBJETIVO CONQUISTADO +20 pts</div>'}
+    `;
+    list.appendChild(div);
+  });
+}
+
+function toggleEntryPanel(idx) {
+  const fields = document.getElementById(`entry-fields-${idx}`);
+  const panel = document.getElementById(`panel-${idx}`);
+  const isOpen = fields.style.display !== 'none';
+  fields.style.display = isOpen ? 'none' : 'block';
+  panel.classList.toggle('open', !isOpen);
+}
+
+function addProgressEntry(idx) {
+  const valEl = document.getElementById(`entry-val-${idx}`);
+  const noteEl = document.getElementById(`entry-note-${idx}`);
+  const val = valEl.value.trim();
+  if (!val) { showToast('Ingresa un valor'); return; }
+  if (!state.goals[idx].entries) state.goals[idx].entries = [];
+  state.goals[idx].entries.push({ value: val, note: noteEl.value.trim(), date: today() });
+  valEl.value = '';
+  noteEl.value = '';
+  // Check if hit target for numeric
+  const g = state.goals[idx];
+  if ((g.metricType === 'numeric' || g.metricType === 'count') && g.metricTarget) {
+    if (parseFloat(val) >= parseFloat(g.metricTarget)) {
+      showToast('¡Alcanzaste la meta! ¿Márcarla como lograda?');
+    }
+  }
+  addPoints(10, `Avance registrado: ${g.text.slice(0,20)}…`, '📈');
+  renderGoals();
+}
+
+function addGoal() {
+  const text = document.getElementById('new-goal-text').value.trim();
+  if (!text) { showToast('Escribe tu objetivo'); return; }
+  const cat = document.getElementById('new-goal-cat').value;
+  const metricType = document.getElementById('new-goal-metric-type').value;
+  const deadline = document.getElementById('new-goal-deadline').value;
+  const goal = { id: Date.now(), text, cat, metricType, done: false, date: today(), entries: [] };
+  if (metricType === 'numeric' || metricType === 'count') {
+    goal.metricStart = document.getElementById('new-goal-start').value || '0';
+    goal.metricTarget = document.getElementById('new-goal-target').value || '100';
+    goal.metricUnit = document.getElementById('new-goal-unit').value.trim();
+  }
+  if (deadline) goal.deadline = deadline;
+  state.goals.push(goal);
+  // Reset form
+  document.getElementById('new-goal-text').value = '';
+  document.getElementById('new-goal-start').value = '';
+  document.getElementById('new-goal-target').value = '';
+  document.getElementById('new-goal-unit').value = '';
+  document.getElementById('new-goal-deadline').value = '';
+  addPoints(5, 'Objetivo declarado', '🎯');
+  renderGoals();
+}
+
+function markGoalDone(idx) {
+  if (state.goals[idx].done) return;
+  state.goals[idx].done = true;
+  if (!state.goals[idx].entries) state.goals[idx].entries = [];
+  state.goals[idx].entries.push({ value: state.goals[idx].metricTarget || '100', note: '¡Meta alcanzada!', date: today() });
+  addPoints(20, `Objetivo logrado: ${state.goals[idx].text.slice(0,20)}…`, '🏆');
+  renderGoals();
+}
+
+// ── REWARDS ──────────────────────────────────────────────────────
+const rewardTiers = [
+  { pts: 25, dot: '#5A8050', title: 'Equipo Básico del Guerrero', items: ['Tracker de hábitos oficial', 'Tablero Imparable', 'Checklist semanal'] },
+  { pts: 50, dot: '#4A70A0', title: 'Desafío del Héroe', items: ['Juego de cartas IMPARABLE', '52 preguntas de alto impacto', 'Uso personal (no comercial)'] },
+  { pts: 75, dot: '#7A50A0', title: 'Alianza', items: ['20% de descuento en talleres', 'Prioridad de inscripción en diplomados'] },
+  { pts: 100, dot: '#C9A84C', title: '🔥 El Umbral · Encuentro Presencial', items: ['Libro IMPARABLE – Alex Sau', 'Certificación Imparable Experto', 'Derecho de compartir el método'] },
+  { pts: 1000, dot: '#E85A1A', title: '⚡ NIVEL LEYENDA', items: ['Acceso VIP al encuentro', 'Cena privada / sesión cerrada', 'Créditos del proyecto', 'Invitación a co-crear futuras ediciones'] },
+];
+
+function renderRewards() {
+  const list = document.getElementById('rewards-list');
+  const log = document.getElementById('points-log');
+  if (!list) return;
+  list.innerHTML = '';
+  rewardTiers.forEach(tier => {
+    const unlocked = state.points >= tier.pts;
+    const div = document.createElement('div');
+    div.className = 'reward-tier ' + (unlocked ? 'unlocked' : 'locked');
+    div.innerHTML = `
+      <div class="reward-tier-header">
+        <div class="reward-dot" style="background:${tier.dot};${unlocked?'':'filter:grayscale(1)'}"></div>
+        <div class="reward-tier-title" style="color:${unlocked ? tier.dot : 'var(--text-dim)'}">${tier.title}</div>
+        <div class="reward-pts-req">${unlocked ? '✦ Desbloqueado' : tier.pts + ' pts'}</div>
+      </div>
+      <div class="reward-items">${tier.items.map(i => `<div class="reward-item">${i}</div>`).join('')}</div>
+    `;
+    list.appendChild(div);
+  });
+  // Log
+  log.innerHTML = '';
+  if (state.log.length === 0) {
+    log.innerHTML = '<div style="font-size:13px; color:var(--text-dim); font-style:italic; text-align:center; padding:20px;">Sin actividad aún.</div>';
+    return;
+  }
+  state.log.slice(0, 20).forEach(entry => {
+    const d = document.createElement('div');
+    d.className = 'log-item';
+    d.innerHTML = `
+      <div class="log-icon">${entry.icon}</div>
+      <div><div class="log-desc">${entry.reason}</div><div class="log-date">${formatDate(entry.date)}</div></div>
+      <div class="log-pts">+${entry.pts}</div>
+    `;
+    log.appendChild(d);
+  });
+}
+
+// ── MAIN UPDATE ──────────────────────────────────────────────────
+function updateAll() {
+  const pts = state.points;
+  const lvl = getLevelInfo(pts);
+  const next = getNextUnlock(pts);
+  const pct = Math.min((pts / 100) * 100, 100);
+
+  // Home
+  const homePts = document.getElementById('home-pts');
+  if (homePts) homePts.innerHTML = `${pts} <span>pts</span>`;
+  const homeBar = document.getElementById('home-bar');
+  if (homeBar) homeBar.style.width = pct + '%';
+  const homeLevel = document.getElementById('home-level');
+  if (homeLevel) { homeLevel.textContent = lvl.label; homeLevel.className = 'warrior-level ' + lvl.cls; }
+  const homeAvatar = document.getElementById('home-avatar');
+  if (homeAvatar) homeAvatar.textContent = state.archetypeIcon;
+  const homeName = document.getElementById('home-name');
+  if (homeName) homeName.textContent = state.name || 'Guerrero';
+  const homeArch = document.getElementById('home-archetype');
+  if (homeArch) homeArch.textContent = state.archetypeName || '–';
+
+  // Markers
+  [25,50,75,100].forEach(v => {
+    const m = document.getElementById(`marker-${v}`);
+    if (m) m.className = 'level-marker' + (pts >= v ? ' reached' : '');
+  });
+
+  // Next unlock
+  const nul = document.getElementById('next-unlock-row');
+  if (nul && next) {
+    document.getElementById('next-unlock-text').textContent = next.text;
+    document.getElementById('next-unlock-pts').textContent = `${next.pts_away} pts más`;
+  }
+
+  updateHomeSummary();
+  renderWeek();
+  renderRewards();
+}
+
+// ── NAV ──────────────────────────────────────────────────────────
+function switchTab(tab) {
+  ['home','habits','goals','rewards'].forEach(t => {
+    document.getElementById('screen-' + t).classList.toggle('active', t === tab);
+    document.getElementById('nav-' + t).classList.toggle('active', t === tab);
+  });
+  if (tab === 'habits') renderHabits();
+  if (tab === 'goals') renderGoals();
+  if (tab === 'rewards') renderRewards();
+}
+
+// ── INIT ──────────────────────────────────────────────────────────
+function initApp() {
+  updateAll();
+  renderSessions();
+  renderHabits();
+  renderGoals();
+  renderRewards();
+}
+
+// Boot
+if (state.setup) {
+  document.getElementById('screen-setup').style.display = 'none';
+  document.getElementById('screen-app').style.display = 'block';
+  initApp();
+}
+
+// ── PWA INSTALL PROMPT ─────────────────────────────────────────
+let deferredPrompt = null;
+
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+  if (!localStorage.getItem('pwa_installed')) {
+    setTimeout(() => showInstallBanner(), 3000);
+  }
+});
+
+window.addEventListener('appinstalled', () => {
+  localStorage.setItem('pwa_installed', '1');
+  hideInstallBanner();
+});
+
+function showInstallBanner() {
+  const b = document.getElementById('install-banner');
+  if (b) b.classList.add('visible');
+}
+
+function hideInstallBanner() {
+  const b = document.getElementById('install-banner');
+  if (b) b.classList.remove('visible');
+  localStorage.setItem('pwa_dismissed', '1');
+}
+
+async function triggerInstall() {
+  if (deferredPrompt) {
+    deferredPrompt.prompt();
+    const { outcome } = await deferredPrompt.userChoice;
+    if (outcome === 'accepted') localStorage.setItem('pwa_installed', '1');
+    deferredPrompt = null;
+  }
+  hideInstallBanner();
+}
+
+if (window.matchMedia('(display-mode: standalone)').matches) {
+  localStorage.setItem('pwa_installed', '1');
+}
+
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('sw.js').catch(() => {});
+}
+
+</script>
+
+<!-- PWA INSTALL BANNER -->
+<div id="install-banner" style="
+  position:fixed; bottom:80px; left:12px; right:12px;
+  background:#1C1810; border:1px solid #C9A84C; border-radius:2px;
+  padding:14px 16px; display:flex; align-items:center; gap:12px;
+  z-index:999; transform:translateY(140px);
+  transition:transform 0.4s cubic-bezier(0.4,0,0.2,1);
+  box-shadow:0 -4px 30px rgba(0,0,0,0.7);
+">
+  <div style="font-size:28px;flex-shrink:0;">⚔️</div>
+  <div style="flex:1;">
+    <div style="font-family:'Cinzel',serif;font-size:12px;color:#C9A84C;letter-spacing:0.1em;margin-bottom:3px;">INSTALA LA APP</div>
+    <div style="font-size:12px;color:#9A8860;line-height:1.4;">Acceso directo desde tu pantalla de inicio. Sin App Store.</div>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:6px;flex-shrink:0;">
+    <button onclick="triggerInstall()" style="background:linear-gradient(135deg,rgba(201,168,76,0.2),rgba(201,168,76,0.1));border:1px solid #C9A84C;color:#C9A84C;font-family:'Cinzel',serif;font-size:10px;letter-spacing:0.1em;padding:6px 12px;cursor:pointer;border-radius:1px;white-space:nowrap;">Instalar</button>
+    <button onclick="hideInstallBanner()" style="background:none;border:none;color:#5A5040;font-size:11px;cursor:pointer;font-family:'Crimson Pro',serif;font-style:italic;">Ahora no</button>
+  </div>
+</div>
+
+<style>
+#install-banner.visible { transform: translateY(0) !important; }
+body { padding-bottom: env(safe-area-inset-bottom, 0); }
+</style>
+
+</body>
+</html>
